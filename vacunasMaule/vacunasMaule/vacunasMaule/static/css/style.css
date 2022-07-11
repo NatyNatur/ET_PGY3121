@@ -6,6 +6,14 @@
     min-height: 100vh;
 }
 
+.bkgrHomePro {
+    background-image: url('./../img/home_pro.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+}
+
 .homeCont {
     height: calc(100vh - 56px);
 }

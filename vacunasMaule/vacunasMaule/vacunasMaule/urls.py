@@ -31,5 +31,12 @@ urlpatterns = [
 
     # professional
     path('profesional/', views.index_pro),
+    path('listar_profesionales/', views.listar_profesionales),
+    path('buscar_profesional/', views.v_buscar_profesional),
+    path('ingresar_profesional/', views.v_ingresar_profesional),
+    path('eliminar_profesional', views.v_eliminar_profesional),
+    path('ingresar_registro_pro', views.ingresar_profesional),
+    path('busca_pro/', views.buscar_profesional),
+    path('elimina_pro', views.eliminar_profesional),
     
 ]

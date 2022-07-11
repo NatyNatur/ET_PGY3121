@@ -25,24 +25,28 @@
       </div>
     </div>
     <div class="row justify-content-center align-items-center h-75">
-      <div class="col-11 col-lg-6 text-center bg-white p-4 rounded-3 shadow">
-        <h3 class="mb-5">Registro de Profesionales</h3>
-        <p class="mb-5">Seleccione una opción para ingresar un profesional, buscar o listar aquellos ya inscritos o eliminar un registro.</p>
-        <div class="row mb-5">
-          <div class="col-6 col-lg-3 mb-2">
-            <a role="button" href="/ingresar_profesional" class="btn btn-outline-success w-100">Ingresar</a>
-          </div>
-          <div class="col-6 col-lg-3 mb-2">
-            <a role="button" href="/buscar_profesional" class="btn btn-outline-info w-100">Buscar</a>
-          </div>
-          <div class="col-6 col-lg-3 mb-2">
-            <a role="button" href="/listar_profesionales" class="btn btn-outline-warning w-100">Listar</a>
-          </div>
-          <div class="col-6 col-lg-3 mb-2">
-            <a role="button" href="/eliminar_profesional" class="btn btn-outline-danger w-100">Eliminar</a>
-          </div>
+      <div class="col-11 col-lg-6 text-center bg-white p-4 rounded-3 shadow optionsCol d-flex flex-column">
+        <div class="mb-auto">
+          <h3 class="mb-5">Eliminar un registro de profesional</h3>
+          <form action="/elimina_pro" method="GET" name="formularioIngreso" class="row g-1">
+            <div class="form-floating mb-3 col-12">
+              <input type="text" class="form-control" placeholder="Ingrese rut" id="inputRut" name="rut_profesional">
+              <label for="floatingInput">Rut</label>
+            </div>
+            <div class="row g-1 justify-content-between">
+              <div class="col-4 col-lg-2">
+                <a role="button" href="/profesional" class="btn btn-outline-secondary w-100">Volver</a>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-danger w-100">Eliminar <span class="d-none d-md-inline">profesional</span></button>
+              </div>
+            </div>
+          </form>
+          {% if mensaje %}
+          <h6 class="my-5">{{ mensaje }}</h6>
+          {% endif %}
         </div>
-        <div class="col-5 col-lg-2 mx-auto">
+        <div class="col-5 col-lg-3 mx-auto">
           <img src="{% static 'img/logoMaule.png' %}" class="img-fluid" alt="comuna">
         </div>
       </div>
