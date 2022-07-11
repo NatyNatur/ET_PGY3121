@@ -1,5 +1,5 @@
-function limpiarForm() {
-    document.formularioIngreso.reset();
+function limpiarForm(form) {
+    form.reset();
 }
 
 function ingresarPaciente() {
@@ -83,3 +83,69 @@ function eliminarPaciente() {
     document.formularioEliminacion.submit() = true;
 }
 
+function ingresarProfesional() {
+    var rut = document.formularioIngresoPro.rut.value;
+    var profesion = document.formularioIngresoPro.profesion.value;
+    var nombre = document.formularioIngresoPro.nombre.value;
+    var appaterno = document.formularioIngresoPro.appaterno.value;
+    var apmaterno = document.formularioIngresoPro.apmaterno.value;
+
+    if (rut.length < 8 || rut.length > 11 || rut.indexOf('-') === -1) {
+        alert('Debe ingresar un rut válido con guión.')
+        document.formularioIngresoPro.rut.focus();
+        return false;
+    }
+
+    if (profesion.length < 3) {
+        alert('Debe ingresar su profesión.');
+        document.formularioIngresoPro.profesion.focus();
+        return false;
+    }
+
+    if (nombre.length < 3) {
+        alert('Debe ingresar un nombre.');
+        document.formularioIngresoPro.nombre.focus();
+        return false;
+    }
+
+    if (appaterno.length < 2) {
+        alert('Debe ingresar un apellido paterno.');
+        document.formularioIngresoPro.appaterno.focus();
+        return false;
+    }
+
+    if (apmaterno.length < 2) {
+        alert('Debe ingresar un apellido materno.');
+        document.formularioIngresoPro.materno.focus();
+        return false;
+    }
+
+    document.formularioIngresoPro.action = "/ingresar_registro_pro";
+    document.formularioIngresoPro.submit() = true;
+}
+
+function buscarProfesional() {
+    var rut = document.formularioBusquedaPro.rut_profesional.value;
+    
+    if (rut.length < 8 || rut.length > 11 || rut.indexOf('-') === -1) {
+        alert('Debe ingresar un rut válido con guión.')
+        document.formularioBusquedaPro.rut_profesional.focus();
+        return false;
+    }
+    
+    document.formularioBusquedaPro.action = "/busca_pro";
+    document.formularioBusquedaPro.submit() = true;
+}
+
+function eliminarProfesional() {
+    var rut = document.formularioEliminacionPro.rut_profesional.value;
+    
+    if (rut.length < 8 || rut.length > 11 || rut.indexOf('-') === -1) {
+        alert('Debe ingresar un rut válido con guión.')
+        document.formularioEliminacionPro.rut_profesional.focus();
+        return false;
+    }
+    
+    document.formularioEliminacionPro.action = "/elimina_pro";
+    document.formularioEliminacionPro.submit() = true;
+}
