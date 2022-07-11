@@ -27,6 +27,9 @@ urlpatterns = [
 
     path('ingresar_registro/', views.ingresar_paciente),
     path('busca_pte/', views.buscar_paciente),
-    path('elimina_pte/', views.eliminar_paciente)
+    path('elimina_pte/', views.eliminar_paciente),
+
+    # professional
+    path('profesional/', views.index_pro),
     
 ]

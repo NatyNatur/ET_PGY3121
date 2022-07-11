@@ -17,6 +17,7 @@
 </head>
 
 <body class="bkgrHome">
+  {% include "paciente/header_pte.html" %}
   <div class="container homeCont">
     <div class="row justify-content-center">
       <div class="col-8 col-lg-4">
@@ -24,10 +25,10 @@
       </div>
     </div>
     <div class="row justify-content-center align-items-center h-75">
-      <div class="col-11 col-lg-8 text-center bg-white p-4 rounded-3 shadow optionsCol d-flex flex-column">
+      <div class="col-11 col-lg-6 text-center bg-white p-4 rounded-3 shadow optionsCol d-flex flex-column">
         <div class="mb-auto">
-          <h3 class="mb-5">Buscar paciente</h3>
-          <form action="/busca_pte" method="GET" name="formularioIngreso" class="row g-1">
+          <h3 class="mb-5">Eliminar un registro de paciente</h3>
+          <form action="/elimina_pte" method="GET" name="formularioIngreso" class="row g-1">
             <div class="form-floating mb-3 col-12">
               <input type="text" class="form-control" placeholder="Ingrese rut" id="inputRut" name="rut_paciente">
               <label for="floatingInput">Rut</label>
@@ -36,46 +37,16 @@
               <div class="col-4 col-lg-2">
                 <a role="button" href="/" class="btn btn-outline-secondary w-100">Volver</a>
               </div>
-              <div class="col-7 col-lg-auto">
-                <button type="submit" class="btn btn-primary w-100">Buscar paciente</button>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-danger w-100">Eliminar <span class="d-none d-md-inline">paciente</span></button>
               </div>
             </div>
           </form>
-          {% if pacientes %}
-          <div class="row mb-5">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">RUT</th>
-                    <th scope="col">NOMBRE</th>
-                    <th scope="col">EDAD</th>
-                    <th scope="col">VACUNA</th>
-                    <th scope="col">FECHA</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for pte in pacientes %}
-                  <tr>
-                    <td>{{ pte.id}}</td>
-                    <td>{{ pte.rut }}</td>
-                    <td>{{ pte.nombre }} {{ pte.appaterno }} {{ pte.apmaterno }}</td>
-                    <td>{{ pte.edad }}</td>
-                    <td>{{ pte.vacuna }}</td>
-                    <td>{{ pte.fecha }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          {% endif %}
           {% if mensaje %}
-          <h6 class="my-3">{{ mensaje }}</h6>
+          <h6 class="my-5">{{ mensaje }}</h6>
           {% endif %}
         </div>
-        <div class="col-5 col-lg-2 mx-auto">
+        <div class="col-5 col-lg-3 mx-auto">
           <img src="{% static 'img/logoMaule.png' %}" class="img-fluid" alt="comuna">
         </div>
       </div>
