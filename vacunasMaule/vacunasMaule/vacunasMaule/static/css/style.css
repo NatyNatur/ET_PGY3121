@@ -21,3 +21,7 @@
 .optionsCol {
     min-height: 30rem;
 }
+
+.form-control:focus {
+    box-shadow: none;
+}

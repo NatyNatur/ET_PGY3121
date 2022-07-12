@@ -26,36 +26,38 @@
     </div>
     <div class="row justify-content-center align-items-center h-75">
       <div class="col-12 col-lg-8 text-center bg-white p-4 rounded-3 shadow">
-        <h3 class="mb-5">Ingresar nuevo profesional</h3>
-        <p class="mb-5">Ingrese los datos indicados para registrar a un nuevo profesional:</p>
+        <h3 class="mb-5">Editar profesional</h3>
+        <p class="mb-5">Ingrese los datos que desee editar:</p>
         <div class="mb-5">
-          <form method="GET" name="formularioIngresoPro" class="row g-1">
+          {% if profesional %}
+          {% for pro in profesional %}
+          <form method="GET" name="formularioEdicion" class="row g-1">
             <div class="form-floating mb-3 col-12 col-lg-6">
-              <input type="text" class="form-control" placeholder="Ingrese rut" id="inputRut" name="rut">
+              <input type="text" readonly class="form-control" placeholder="Ingrese rut" id="inputRut" name="rut" value="{{pro.rut}}">
               <label for="floatingInput">Rut</label>
             </div>
             <div class="form-floating mb-3 col-12 col-lg-6">
-              <input type="text" class="form-control" placeholder="Ingrese nombre" id="inputNombre" name="nombre">
+              <input type="text" class="form-control" placeholder="Ingrese nombre" id="inputNombre" name="nombre" value={{pro.nombre}}>
               <label for="floatingInput">Nombre</label>
             </div>
             <div class="form-floating mb-3 col-12 col-lg-6">
-              <input type="text" class="form-control" placeholder="Ingrese apellido paterno" id="inputApp" name="appaterno">
+              <input type="text" class="form-control" placeholder="Ingrese apellido paterno" id="inputApp" name="appaterno" value={{pro.appaterno}}>
               <label for="floatingInput">Apellido paterno</label>
             </div>
             <div class="form-floating mb-3 col-12 col-lg-6">
-              <input type="text" class="form-control" placeholder="Ingrese apellido materno" id="inputApm" name="apmaterno">
+              <input type="text" class="form-control" placeholder="Ingrese apellido materno" id="inputApm" name="apmaterno" value={{pro.apmaterno}}>
               <label for="floatingInput">Apellido materno</label>
             </div>
             <div class="form-floating mb-3 col-12 col-lg-4">
-              <input type="date" class="form-control" placeholder="MM/DD/YYYY" id="inputFecha" name="fechanacto">
+              <input type="text" class="form-control" id="inputFecha" name="fechanacto" value={{pro.fechanacto|date:"Y-m-d"}}>
               <label for="floatingInput">Fecha de nacimiento</label>
             </div>
             <div class="form-floating mb-3 col-12 col-lg-4">
-              <input type="text" class="form-control" placeholder="Ingrese profesión" id="inputProfesion" name="profesion">
+              <input type="text" class="form-control" placeholder="Ingrese profesión" id="inputProfesion" name="profesion" value={{pro.profesion}}>
               <label for="floatingInput">Profesión</label>
             </div>
             <div class="form-floating mb-3 col-12 col-lg-4">
-              <input type="text" class="form-control" placeholder="Ingrese email" id="inputVacuna" name="email">
+              <input type="text" class="form-control" placeholder="Ingrese email" id="inputVacuna" name="email" value={{pro.email}}>
               <label for="floatingInput">Email</label>
             </div>
 
@@ -64,14 +66,22 @@
                 <a role="button" href="/profesional" class="btn btn-outline-secondary w-100">Volver</a>
               </div>
               <div class="col-auto">
-                <button type="button" class="btn btn-secondary"
-                  onclick="javascript:void(limpiarForm(form))">Limpiar</button>
-                <button type="button" class="btn btn-primary" onclick="javascript:void(ingresarProfesional())">Ingresar</button>
+                <button type="button" class="btn btn-primary" onclick="javascript:void(editarProfesional())">Guardar</button>
               </div>
             </div>
           </form>
+          {% endfor %}
+          {% endif %}
           {% if mensaje %}
-          <h6>{{ mensaje }}</h6>
+          <h6 class="mb-5">{{ mensaje }}</h6>
+          <div class="form-group row g-1 justify-content-between">
+            <div class="col-4 col-lg-2">
+              <a role="button" href="/profesional" class="btn btn-outline-secondary w-100">Volver</a>
+            </div>
+            <div class="col-auto">
+              <a role="button" href="/listar_profesionales" class="btn btn-outline-warning w-100">Listar profesionales</a>
+            </div>
+          </div>
           {% endif %}
         </div>
         <div class="col-5 col-lg-2 mx-auto">
@@ -83,6 +93,11 @@
 
 
   {% include "scripts.html" %}
+  <script>
+    function changeType() {
+      document.getElementById('inputFecha').type = 'date';
+    }
+  </script>
 </body>
 
 </html>

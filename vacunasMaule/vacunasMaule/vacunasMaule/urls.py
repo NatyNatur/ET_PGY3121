@@ -38,5 +38,7 @@ urlpatterns = [
     path('ingresar_registro_pro', views.ingresar_profesional),
     path('busca_pro/', views.buscar_profesional),
     path('elimina_pro', views.eliminar_profesional),
+    path('editar_profesional/<str:rut_profesional>', views.v_editar_profesional),
+    path('edita_pro', views.editar_profesional),
     
 ]

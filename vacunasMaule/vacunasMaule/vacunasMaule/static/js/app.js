@@ -85,20 +85,17 @@ function eliminarPaciente() {
 
 function ingresarProfesional() {
     var rut = document.formularioIngresoPro.rut.value;
-    var profesion = document.formularioIngresoPro.profesion.value;
     var nombre = document.formularioIngresoPro.nombre.value;
     var appaterno = document.formularioIngresoPro.appaterno.value;
     var apmaterno = document.formularioIngresoPro.apmaterno.value;
+    var fecha = document.formularioIngresoPro.fechanacto.value;
+    var profesion = document.formularioIngresoPro.profesion.value;
+    var email = document.formularioIngresoPro.email.value;
+
 
     if (rut.length < 8 || rut.length > 11 || rut.indexOf('-') === -1) {
         alert('Debe ingresar un rut válido con guión.')
         document.formularioIngresoPro.rut.focus();
-        return false;
-    }
-
-    if (profesion.length < 3) {
-        alert('Debe ingresar su profesión.');
-        document.formularioIngresoPro.profesion.focus();
         return false;
     }
 
@@ -117,6 +114,24 @@ function ingresarProfesional() {
     if (apmaterno.length < 2) {
         alert('Debe ingresar un apellido materno.');
         document.formularioIngresoPro.materno.focus();
+        return false;
+    }
+
+    if (fecha.length < 2) {
+        alert('Debe ingresar una fecha válida.');
+        document.formularioIngreso.fecha.focus();
+        return false;
+    }
+    
+    if (profesion.length < 3) {
+        alert('Debe ingresar su profesión.');
+        document.formularioIngresoPro.profesion.focus();
+        return false;
+    }
+
+    if (email.indexOf('@') === -1 || email.indexOf('.') === -1 || email.length < 3) {
+        document.formularioIngresoPro.email.focus();
+        alert('Debe ingresar un email válido.');
         return false;
     }
 
@@ -148,4 +163,52 @@ function eliminarProfesional() {
     
     document.formularioEliminacionPro.action = "/elimina_pro";
     document.formularioEliminacionPro.submit() = true;
+}
+
+function editarProfesional() {
+    var nombre = document.formularioEdicion.nombre.value;
+    var appaterno = document.formularioEdicion.appaterno.value;
+    var apmaterno = document.formularioEdicion.apmaterno.value;
+    var fecha = document.formularioEdicion.fechanacto.value;
+    var profesion = document.formularioEdicion.profesion.value;
+    var email = document.formularioEdicion.email.value;
+
+    if (nombre.length < 3) {
+        alert('Debe ingresar un nombre.');
+        document.formularioEdicion.nombre.focus();
+        return false;
+    }
+
+    if (appaterno.length < 2) {
+        alert('Debe ingresar un apellido paterno.');
+        document.formularioEdicion.appaterno.focus();
+        return false;
+    }
+
+    if (apmaterno.length < 2) {
+        alert('Debe ingresar un apellido materno.');
+        document.formularioEdicion.materno.focus();
+        return false;
+    }
+
+    if (fecha.length < 2) {
+        alert('Debe ingresar una fecha válida.');
+        document.formularioEdicion.fecha.focus();
+        return false;
+    }
+    
+    if (profesion.length < 3) {
+        alert('Debe ingresar su profesión.');
+        document.formularioEdicion.profesion.focus();
+        return false;
+    }
+
+    if (email.indexOf('@') === -1 || email.indexOf('.') === -1 || email.length < 3) {
+        document.formularioEdicion.email.focus();
+        alert('Debe ingresar un email válido.');
+        return false;
+    }
+
+    document.formularioEdicion.action = "/edita_pro";
+    document.formularioEdicion.submit() = true;
 }

@@ -84,14 +84,20 @@ def listar_profesionales(request):
     datos = Professional.objects.all()
     return render(request,"profesional/listaProfesionales.html",{'profesionales':datos})
 
+def v_editar_profesional(request, rut_profesional):
+    profesional = Professional.objects.filter(rut=rut_profesional)
+    return render(request,"profesional/editarProfesional.html",{'profesional':profesional})
+
 def ingresar_profesional(request):
     rut = request.GET["rut"]
     nombre = request.GET["nombre"]
     appaterno = request.GET["appaterno"]
     apmaterno = request.GET["apmaterno"]
     profesion = request.GET["profesion"]
-    if len(nombre) > 0 and len(rut) > 0 and len(appaterno) > 0 and len(apmaterno) > 0 and  len(profesion) > 0:
-        pte = Professional(rut = rut, nombre = nombre, appaterno = appaterno, apmaterno = apmaterno, profesion = profesion)
+    fechanacto = request.GET["fechanacto"]
+    email = request.GET["email"]
+    if len(nombre) > 0 and len(rut) > 0 and len(appaterno) > 0 and len(apmaterno) > 0 and  len(profesion) > 0 and len(email) > 0:
+        pte = Professional(rut = rut, nombre = nombre, appaterno = appaterno, apmaterno = apmaterno, profesion = profesion, fechanacto = fechanacto, email = email)
         pte.save()
         mensaje = "Profesional registrado exitosamente."
     else:
@@ -124,3 +130,29 @@ def eliminar_profesional(request):
     else:
         mensaje = "Debe ingresar un rut correcto para su eliminación."
     return render(request, "profesional/eliminarProfesional.html", {"mensaje": mensaje})
+
+def editar_profesional(request):
+    if request.GET["rut"]:
+        rut_recibido = request.GET["rut"]
+        nombre_recibido = request.GET["nombre"]
+        appaterno_recibido = request.GET["appaterno"]
+        apmaterno_recibido = request.GET["apmaterno"]
+        profesion_recibido = request.GET["profesion"]
+        fechanacto_recibido = request.GET["fechanacto"]
+        email_recibido = request.GET["email"]
+        profesional = Professional.objects.filter(rut = rut_recibido)
+        if profesional:
+            pro = Professional.objects.get(rut = rut_recibido)
+            pro.nombre = nombre_recibido
+            pro.appaterno = appaterno_recibido
+            pro.apmaterno = apmaterno_recibido
+            pro.profesion = profesion_recibido
+            pro.fechanacto = fechanacto_recibido
+            pro.email = email_recibido
+            pro.save()
+            mensaje = "Datos correctamente modificados."           
+        else:
+            mensaje = "No existe profesional a modificar."           
+    else:
+        mensaje = "Debe seleccionar previamente un profesional para su modificación."
+    return render(request, "profesional/editarProfesional.html", {"mensaje": mensaje})

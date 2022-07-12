@@ -1,5 +1,6 @@
 from statistics import mode
 from django.db import models
+from django.utils.timezone import now
 
 # Create your models here.
 class Paciente(models.Model): 
@@ -17,4 +18,6 @@ class Professional(models.Model):
     nombre = models.CharField(max_length=50)
     appaterno = models.CharField(max_length=50)
     apmaterno = models.CharField(max_length=50)
-    profesion = models.CharField(max_length=50)
+    profesion = models.CharField(max_length=50, editable=True)
+    fechanacto = models.DateField(default=now, editable=True )
+    email = models.CharField(max_length=100, default='', editable=True)
